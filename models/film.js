@@ -2,7 +2,10 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const FilmSchema = Schema({
-  name: String,
+  name: {
+    type: String,
+    unique: true,
+  },
   gender: String,
   description: String,
   image: String,
