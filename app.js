@@ -8,6 +8,7 @@ const { API_VERSION } = require("./config");
 const userRoutes = require("./routers/user");
 const filmRoutes = require("./routers/film");
 const authRoutes = require("./routers/auth");
+const commentRoutes = require("./routers/comment");
 
 //Configuración del body parse
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -29,5 +30,6 @@ app.use((req, res, next) => {
 app.use(`/api/${API_VERSION}`, userRoutes);
 app.use(`/api/${API_VERSION}`, filmRoutes);
 app.use(`/api/${API_VERSION}`, authRoutes);
+app.use(`/api/${API_VERSION}`, commentRoutes);
 
 module.exports = app;

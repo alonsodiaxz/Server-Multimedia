@@ -38,9 +38,10 @@ function signUp(req, res) {
               if (!userStored) {
                 res.status(404).send({ message: "Error al crear el usuario." });
               } else {
-                res
-                  .status(200)
-                  .send({ message: "Usuario almacenado con éxito" });
+                res.status(200).send({
+                  message: "Usuario almacenado con éxito",
+                  user: userStored,
+                });
               }
             }
           });
@@ -55,8 +56,7 @@ function signIn(req, res) {
   const { email, password } = req.body;
 
   const correo = email.toLowerCase();
-
-  User.findOne({ correo }, (err, userStored) => {
+  User.findOne({ email: correo }, (err, userStored) => {
     if (err) {
       res.status(500).send({ message: "Error de servidor", status: 500 });
     } else {
