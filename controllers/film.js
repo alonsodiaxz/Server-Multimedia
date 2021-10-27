@@ -90,10 +90,26 @@ function getFilmsRating(req, res) {
   }).sort({ rating: -1 });
 }
 
+//Obtener peliculas por estrenos
+function getPremieres(req, res) {
+  Film.find({ premiere: true }, (err, films) => {
+    if (err) {
+      res.status(500).send({ message: "Error de servidor." });
+    } else {
+      if (!films) {
+        res.status(404).send({ message: "Peliculas no encontradas." });
+      } else {
+        res.status(200).send({ message: "Peliculas encontradas.", films });
+      }
+    }
+  });
+}
+
 module.exports = {
   saveFilm,
   getFilmsGender,
   getFilms,
   getFilmsName,
   getFilmsRating,
+  getPremieres,
 };
