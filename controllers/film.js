@@ -39,14 +39,22 @@ function getFilmsGender(req, res) {
 function getFilmsName(req, res) {
   const { name } = req.params;
 
-  Film.find({ name: name }, (err, films) => {
+  Film.find((err, films) => {
     if (err) {
       res.status(500).send({ message: "Error de servidor." });
     } else {
       if (!films) {
         res.status(404).send({ message: "Peliculas no encontradas." });
       } else {
-        res.status(200).send({ message: "Peliculas encontradas.", films });
+        const filmsSearched = [];
+        films.map((film) => {
+          if (film.name.toString().toLowerCase().includes(name.toLowerCase())) {
+            filmsSearched.push(film);
+          }
+        });
+        res
+          .status(200)
+          .send({ message: "Peliculas encontradas.", filmsSearched });
       }
     }
   });

@@ -6,6 +6,7 @@ const CommentSchema = Schema({
   rate: Number,
   comment: String,
   likes: Number,
+  dislikes: Number,
   film: String,
 });
 
