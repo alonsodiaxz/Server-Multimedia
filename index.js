@@ -4,8 +4,10 @@ const port = process.env.PORT || 3977;
 const { API_VERSION, IP_SERVER, PORT_DB } = require("./config");
 
 //mongoose.set("useFindAndModify", false);
+//mongodb+srv://filmappuser:<password>@filmsapp.87cig.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+//mongodb://${IP_SERVER}:${PORT_DB}/MultimediaDB
 mongoose.connect(
-  `mongodb://${IP_SERVER}:${PORT_DB}/MultimediaDB`,
+  `mongodb+srv://filmappuser:mernfilm@filmsapp.87cig.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
