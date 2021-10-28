@@ -11,6 +11,8 @@ const FilmSchema = Schema({
   image: String,
   rating: Number,
   premiere: Boolean,
+  background: String,
+  url: String,
 });
 
 module.exports = mongoose.model("Film", FilmSchema);
