@@ -1,8 +1,8 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+require("dotenv").config();
 
 const app = express();
-const { API_VERSION } = require("./config");
 
 //Load routings
 const userRoutes = require("./routers/user");
@@ -27,9 +27,9 @@ app.use((req, res, next) => {
 });
 
 //Router Basic
-app.use(`/api/${API_VERSION}`, userRoutes);
-app.use(`/api/${API_VERSION}`, filmRoutes);
-app.use(`/api/${API_VERSION}`, authRoutes);
-app.use(`/api/${API_VERSION}`, commentRoutes);
+app.use(`/api/${process.env.API_VERSION}`, userRoutes);
+app.use(`/api/${process.env.API_VERSION}`, filmRoutes);
+app.use(`/api/${process.env.API_VERSION}`, authRoutes);
+app.use(`/api/${process.env.API_VERSION}`, commentRoutes);
 
 module.exports = app;

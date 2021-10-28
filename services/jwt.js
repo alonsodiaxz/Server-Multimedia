@@ -1,7 +1,6 @@
 const jwt = require("jwt-simple");
 const moment = require("moment");
-
-const { SECRET_KEY } = require("../config");
+require("dotenv").config();
 
 function createAccessToken(user) {
   const payload = {
@@ -15,7 +14,7 @@ function createAccessToken(user) {
     exp: moment().add(3, "hours").unix(),
   };
 
-  const jwToken = jwt.encode(payload, SECRET_KEY);
+  const jwToken = jwt.encode(payload, process.env.SECRET_KEY);
   return jwToken;
 }
 
@@ -25,12 +24,12 @@ function refreshAccessToken(user) {
     exp: moment().add(30, "days").unix(),
   };
 
-  const jwToken = jwt.encode(payload, SECRET_KEY);
+  const jwToken = jwt.encode(payload, process.env.SECRET_KEY);
   return jwToken;
 }
 
 function decodeToken(token) {
-  const payloadDecodificado = jwt.decode(token, SECRET_KEY, true);
+  const payloadDecodificado = jwt.decode(token, process.env.SECRET_KEY, true);
   return payloadDecodificado;
 }
 
